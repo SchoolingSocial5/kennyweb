@@ -5,11 +5,20 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSession, signOut } from 'next-auth/react';
 import { HiMenuAlt3, HiX } from 'react-icons/hi';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
   const userStatus = (session?.user as any)?.status;
+  const pathname = usePathname();
+
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Contact', href: '/contact' },
+  ];
 
   return (
     <nav className="h-[80px] bg-white/90 backdrop-blur-[10px] flex items-center shadow-sm sticky top-0 z-[1000] w-full">
@@ -31,35 +40,41 @@ const Navbar = () => {
         <ul className={`
           fixed md:relative top-[80px] md:top-0 left-0 right-0 
           bg-transparent
-          flex flex-col md:flex-row gap-0 md:gap-10 py-8 md:py-0
+          flex flex-col md:flex-row gap-0 md:gap-10 py-8 md:py-0 px-[10px] md:px-0
           transition-all duration-400 z-[99] md:z-auto
           ${isOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : 'translate-y-[-20px] md:translate-y-0 opacity-0 md:opacity-100 pointer-events-none md:pointer-events-auto'}
         `}>
-          <li className="w-full md:w-auto opacity-100 transition-all duration-300">
-            <Link href="/" className="block md:inline px-8 md:px-0 py-4 md:py-0 text-lg md:text-base font-medium text-primary md:text-primary relative md:after:absolute md:after:bottom-[-5px] md:after:left-0 md:after:w-full md:after:h-[2px] md:after:bg-primary" onClick={() => setIsOpen(false)}>Home</Link>
-          </li>
-          <li className="w-full md:w-auto opacity-100 transition-all duration-300">
-            <Link href="/services" className="block md:inline px-8 md:px-0 py-4 md:py-0 text-lg md:text-base font-medium text-slate-600 hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Services</Link>
-          </li>
-          <li className="w-full md:w-auto opacity-100 transition-all duration-300">
-            <Link href="/projects" className="block md:inline px-8 md:px-0 py-4 md:py-0 text-lg md:text-base font-medium text-slate-600 hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Projects</Link>
-          </li>
-          <li className="w-full md:w-auto opacity-100 transition-all duration-300">
-            <Link href="/blogs" className="block md:inline px-8 md:px-0 py-4 md:py-0 text-lg md:text-base font-medium text-slate-600 hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>Blogs</Link>
-          </li>
-          <li className="w-full md:w-auto opacity-100 transition-all duration-300">
-            <Link href="/about" className="block md:inline px-8 md:px-0 py-4 md:py-0 text-lg md:text-base font-medium text-slate-600 hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>About Us</Link>
-          </li>
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <li key={link.name} className="w-full md:w-auto opacity-100 transition-all duration-300">
+                <Link 
+                  href={link.href} 
+                  className={`
+                    block md:inline px-8 md:px-0 py-4 md:py-0 text-lg md:text-base font-medium transition-colors
+                    ${isActive 
+                      ? 'text-primary md:text-primary relative md:after:absolute md:after:bottom-[-5px] md:after:left-0 md:after:w-full md:after:h-[2px] md:after:bg-primary' 
+                      : 'text-slate-600 hover:text-primary'
+                    }
+                  `}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            );
+          })}
           
           {session ? (
             <>
 
-              <li className="md:hidden px-8 py-6 flex flex-col gap-4">
-                {(userStatus === 'admin' || userStatus === 'staff') && (
-                  <Link href="/admin" onClick={() => setIsOpen(false)}>
-                    <button className="w-full bg-primary text-white py-3 rounded-full font-semibold cursor-pointer mb-2">Admin</button>
-                  </Link>
-                )}
+              <li className="md:hidden px-[10px] py-6 flex flex-col gap-4">
+                <Link 
+                  href={userStatus === 'admin' || userStatus === 'staff' ? "/admin" : "/dashboard"} 
+                  onClick={() => setIsOpen(false)}
+                >
+                  <button className="w-full bg-primary text-white py-3 rounded-full font-semibold cursor-pointer mb-2">Dashboard</button>
+                </Link>
                 <button 
                   onClick={() => signOut()}
                   className="w-full bg-red-500 text-white py-3 rounded-full font-semibold cursor-pointer"
@@ -69,7 +84,7 @@ const Navbar = () => {
               </li>
             </>
           ) : (
-            <li className="md:hidden px-8 py-6 flex flex-col gap-4">
+            <li className="md:hidden px-[10px] py-6 flex flex-col gap-4">
               <Link href="/signup" className="w-full" onClick={() => setIsOpen(false)}>
                 <button className="w-full bg-primary text-white py-3 rounded-full font-semibold cursor-pointer">Signup</button>
               </Link>
@@ -83,11 +98,9 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           {session ? (
             <div className="hidden md:flex items-center gap-4">
-              {(userStatus === 'admin' || userStatus === 'staff') && (
-                <Link href="/admin">
-                  <button className="bg-primary text-white px-6 py-2 rounded-full text-sm font-semibold transition-all hover:bg-primary-dark cursor-pointer">Admin</button>
-                </Link>
-              )}
+              <Link href={userStatus === 'admin' || userStatus === 'staff' ? "/admin" : "/dashboard"}>
+                <button className="bg-primary text-white px-6 py-2 rounded-full text-sm font-semibold transition-all hover:bg-primary-dark cursor-pointer">Dashboard</button>
+              </Link>
               <button 
                 onClick={() => signOut()}
                 className="bg-red-500 text-white px-6 py-2 rounded-full text-sm font-semibold transition-all hover:bg-red-600 cursor-pointer"

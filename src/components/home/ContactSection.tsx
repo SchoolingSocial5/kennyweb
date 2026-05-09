@@ -13,7 +13,7 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Left Column: Contact Info Card */}
-          <div className="lg:col-span-5 relative bg-navy rounded-[40px] overflow-hidden p-12 text-white shadow-2xl min-h-[600px] flex flex-col justify-between">
+          <div className="lg:col-span-5 relative bg-navy rounded-[40px] overflow-hidden px-[10px] py-12 md:p-12 text-white shadow-2xl min-h-[600px] flex flex-col justify-between">
             {/* Topographic Pattern Overlay */}
             <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('/topo-pattern.png')] bg-cover bg-center mix-blend-overlay"></div>
             

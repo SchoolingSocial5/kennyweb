@@ -78,8 +78,8 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="py-20 bg-white flex flex-col items-center justify-center p-8">
-      <div className="max-w-md w-full space-y-8 bg-slate-50 p-10 rounded-2xl shadow-xl">
+    <div className="py-20 bg-white flex flex-col items-center justify-center px-[10px]">
+      <div className="max-w-md w-full space-y-8 bg-slate-50 px-[10px] py-10 md:p-10 rounded-2xl shadow-xl">
         <div className="text-center">
           <h2 className="mt-6 text-3xl font-extrabold text-slate-900">Create your account</h2>
           <p className="mt-2 text-sm text-slate-600">

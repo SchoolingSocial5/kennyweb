@@ -1,17 +1,16 @@
 import React from 'react';
-import Hero from '@/components/Hero';
-import ServicesScroll from '@/components/ServicesScroll';
-import AboutSection from '@/components/AboutSection';
-import ServicesGridSection from '@/components/ServicesGridSection';
-import WorkProcessSection from '@/components/WorkProcessSection';
-import WhyChooseUsSection from '@/components/WhyChooseUsSection';
-import ProjectsSection from '@/components/ProjectsSection';
-import ContactSection from '@/components/ContactSection';
-import TestimonialsSection from '@/components/TestimonialsSection';
-import TeamSection from '@/components/TeamSection';
-import StatsSection from '@/components/StatsSection';
-import NewsSection from '@/components/NewsSection';
-import FaqSection from '@/components/FaqSection';
+import Hero from '@/components/home/Hero';
+import ServicesScroll from '@/components/home/ServicesScroll';
+import AboutSection from '@/components/home/AboutSection';
+import ServicesGridSection from '@/components/home/ServicesGridSection';
+import WorkProcessSection from '@/components/home/WorkProcessSection';
+import WhyChooseUsSection from '@/components/home/WhyChooseUsSection';
+import ProjectsSection from '@/components/home/ProjectsSection';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
+import TeamSection from '@/components/home/TeamSection';
+import StatsSection from '@/components/home/StatsSection';
+import NewsSection from '@/components/home/NewsSection';
+import FaqSection from '@/components/home/FaqSection';
 
 export default function HomePage() {
   return (
@@ -25,7 +24,6 @@ export default function HomePage() {
       <WhyChooseUsSection />
       <ProjectsSection />
       <ServicesScroll />
-      <ContactSection />
       <TestimonialsSection />
       <TeamSection />
       <StatsSection />

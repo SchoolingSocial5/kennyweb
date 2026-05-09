@@ -92,7 +92,7 @@ const TestimonialsSection = () => {
             {allTestimonials.map((testimonial, index) => (
               <SwiperSlide key={index}>
                 <div
-                  className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-[40px] p-10 overflow-hidden group transition-all duration-500 hover:bg-white/10"
+                  className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-[40px] px-[10px] py-10 md:p-10 overflow-hidden group transition-all duration-500 hover:bg-white/10"
                 >
                   {/* Quote Icon Overlay */}
                   <FaQuoteRight className="absolute bottom-10 right-10 text-9xl text-white opacity-[0.03] transform group-hover:scale-110 transition-transform duration-700" />
