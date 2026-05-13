@@ -4,8 +4,8 @@ import ProjectDetailsContent from '@/components/home/ProjectDetailsContent';
 import ProjectCTABanner from '@/components/home/ProjectCTABanner';
 
 export const metadata = {
-  title: 'Project Details | IT Company',
-  description: 'View detailed information about our successful IT projects and solutions.',
+  title: 'Project Details | Kenny Tech Studios',
+  description: 'Detailed insights into the software, web, and mobile app projects developed by Kenny Tech Studios.',
 };
 
 const ProjectDetailsPage = () => {

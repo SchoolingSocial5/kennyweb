@@ -5,8 +5,8 @@ import ProjectCTABanner from '@/components/home/ProjectCTABanner';
 import NewsletterSection from '@/components/home/NewsletterSection';
 
 export const metadata = {
-  title: 'Our Projects | IT Company',
-  description: 'Discover our portfolio of successful IT projects, including mobile apps, web applications, and UI/UX designs.',
+  title: 'Our Projects | Kenny Tech Studios',
+  description: 'Discover the portfolio of successful projects by Kenny Tech Studios, featuring software development, web apps, mobile apps, animation, and digital marketing campaigns.',
 };
 
 const ProjectsPage = () => {

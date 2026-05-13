@@ -1,7 +1,22 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { FaFacebookF, FaTwitter, FaPinterestP, FaInstagram, FaYoutube, FaChevronDown } from 'react-icons/fa';
+import { companyStore, Company } from '@/lib/stores/CompanyStore';
 
 const ContactSection = () => {
+  const [company, setCompany] = useState<Company | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCompany = async () => {
+      const data = await companyStore.getCompany();
+      setCompany(data);
+      setLoading(false);
+    };
+    fetchCompany();
+  }, []);
+
   return (
     <section className="py-24 relative overflow-hidden bg-white">
       {/* Background Text (Outline) */}
@@ -20,18 +35,31 @@ const ContactSection = () => {
             <div className="relative z-10 space-y-12">
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold border-l-4 border-primary pl-4">Address</h3>
-                <p className="text-white/70 text-lg leading-relaxed max-w-[300px]">
-                  2464 Royal Ln. Mesa,<br />
-                  New Jersey 45463
-                </p>
+                {loading ? (
+                  <div className="space-y-3 animate-pulse">
+                    <div className="h-4 w-48 bg-white/10 rounded-full"></div>
+                    <div className="h-4 w-32 bg-white/10 rounded-full"></div>
+                  </div>
+                ) : (
+                  <p className="text-white/70 text-lg leading-relaxed max-w-[300px]">
+                    {company?.address || 'Loading address...'}
+                  </p>
+                )}
               </div>
 
               <div className="space-y-4">
                 <h3 className="text-2xl font-bold border-l-4 border-primary pl-4">Contact</h3>
-                <div className="text-white/70 text-lg space-y-2">
-                  <p>Phone : +(000) 000-0000</p>
-                  <p>Email : example@gmail.com</p>
-                </div>
+                {loading ? (
+                  <div className="space-y-3 animate-pulse">
+                    <div className="h-4 w-56 bg-white/10 rounded-full"></div>
+                    <div className="h-4 w-48 bg-white/10 rounded-full"></div>
+                  </div>
+                ) : (
+                  <div className="text-white/70 text-lg space-y-2">
+                    <p>Phone : {company?.phoneNumber || '(000) 000-0000'}</p>
+                    <p>Email : {company?.email || 'info@kennytech.com'}</p>
+                  </div>
+                )}
               </div>
 
               <div className="space-y-4">
@@ -76,7 +104,7 @@ const ContactSection = () => {
                 <input 
                   type="text" 
                   placeholder="Ex. John Doe" 
-                  className="w-full bg-slate-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-slate-300"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-slate-300"
                 />
               </div>
 
@@ -85,30 +113,17 @@ const ContactSection = () => {
                 <input 
                   type="email" 
                   placeholder="example@gmail.com" 
-                  className="w-full bg-slate-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-slate-300"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-slate-300"
                 />
               </div>
 
-              <div className="space-y-2">
+              <div className="md:col-span-2 space-y-2">
                 <label className="text-sm font-bold text-slate-700">Phone *</label>
                 <input 
                   type="tel" 
                   placeholder="Enter Phone Number" 
-                  className="w-full bg-slate-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-slate-300"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-slate-300"
                 />
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700">Service *</label>
-                <div className="relative">
-                  <select className="w-full bg-slate-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/20 outline-none transition-all appearance-none text-slate-500">
-                    <option>Select Services</option>
-                    <option>Web Development</option>
-                    <option>App Development</option>
-                    <option>UI/UX Design</option>
-                  </select>
-                  <FaChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-                </div>
               </div>
 
               <div className="md:col-span-2 space-y-2">
@@ -116,7 +131,7 @@ const ContactSection = () => {
                 <textarea 
                   placeholder="Enter here.." 
                   rows={6}
-                  className="w-full bg-slate-50 border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-slate-300 resize-none"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-slate-300 resize-none"
                 ></textarea>
               </div>
 

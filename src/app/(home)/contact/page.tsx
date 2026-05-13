@@ -4,8 +4,8 @@ import ContactSection from '@/components/home/ContactSection';
 import ContactMap from '@/components/home/ContactMap';
 
 export const metadata = {
-  title: 'Contact Us | IT Company',
-  description: 'Get in touch with us for your IT needs. We offer free quotes and professional consultation for web development, app development, and UI/UX design.',
+  title: 'Contact Us | Kenny Tech Studios',
+  description: 'Get in touch with Kenny Tech Studios for your software, web, and mobile app development needs. We offer professional consultation for animation, video editing, and digital marketing.',
 };
 
 const ContactPage = () => {

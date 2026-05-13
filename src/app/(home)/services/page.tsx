@@ -4,8 +4,8 @@ import ServicesList from '@/components/home/ServicesList';
 import ServicesMarquee from '@/components/home/ServicesMarquee';
 
 export const metadata = {
-  title: 'Our Services | IT Company',
-  description: 'Explore the wide range of IT services we provide to elevate your business, including web development, mobile apps, and cloud computing.',
+  title: 'Our Services | Kenny Tech Studios',
+  description: 'Explore the wide range of services Kenny Tech Studios provides, including software development, web apps, mobile apps, animation, video editing, and digital marketing.',
 };
 
 const ServicesPage = () => {
